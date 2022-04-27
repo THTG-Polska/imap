@@ -210,10 +210,6 @@ abstract class AbstractPart implements PartInterface
     final public function getDecodedContent(): string
     {
         if (null === $this->decodedContent) {
-            if (self::ENCODING_UNKNOWN === $this->getEncoding()) {
-                throw new UnexpectedEncodingException('Cannot decode a content with an uknown encoding');
-            }
-
             $content = $this->getContent();
             if (self::ENCODING_BASE64 === $this->getEncoding()) {
                 $content = \base64_decode($content, false);
