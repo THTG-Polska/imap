@@ -25,6 +25,7 @@
         "php": "^8.0.1",
         "ext-iconv": "*",
         "ext-imap": "*",
+        "ext-intl": "*",
         "ext-mbstring": "*"
     },
     "require-dev": {

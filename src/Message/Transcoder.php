@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Ddeboer\Imap\Message;
 
 use Ddeboer\Imap\Exception\UnsupportedCharsetException;
+use UConverter;
 
 final class Transcoder
 {
@@ -292,6 +293,10 @@ final class Transcoder
         $iconvDecodedText = \iconv($fromCharset, 'UTF-8', $text);
         if (false === $iconvDecodedText) {
             $iconvDecodedText = \iconv($originalFromCharset, 'UTF-8', $text);
+        }
+
+        if (false === $iconvDecodedText) {
+            $iconvDecodedText = UConverter::transcode($text, 'UTF-8', $originalFromCharset);
         }
 
         \restore_error_handler();
